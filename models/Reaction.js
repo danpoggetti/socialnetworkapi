@@ -1,5 +1,5 @@
 const {Schema, model} = require ("mongoose")
-const thoughtSchema = new Schema (
+const reactionSchema = new Schema (
     {
         reactionBody: {
             type: String,
@@ -15,15 +15,10 @@ const thoughtSchema = new Schema (
     },
     {
         toJSON: {
-            virtuals: true,
+            getters: true,
         },
         id: false
     }
 )
 
-thoughtSchema.virtual("reactionCount").get(() => {
-    return this.reactions.length
-})
-
-const Thought = model("Thought", thoughtSchema)
-model.exports = Thought
+model.exports = reactionSchema
